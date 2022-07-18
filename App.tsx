@@ -1,12 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+//Types
+import React, { ReactElement } from 'react';
 
-export default function App() {
+//Constants
+import { SPACE_CADET } from '@constants/colors';
+
+//Screens
+import Focus from '@screens/Focus/Focus.screen';
+
+//Expo
+import { StatusBar } from 'expo-status-bar';
+
+//React Native
+import { StyleSheet, SafeAreaView, Text } from 'react-native';
+
+export default function App(): ReactElement {
+  const [focusItem, setFocusItem] = React.useState<string>('');
   return (
     <>
       <StatusBar style="auto" />
       <SafeAreaView style={styles.container}>
-        <Text>Open up App.tsx to start working on your app!</Text>
+        {focusItem.length > 0 ? (
+          <Text style={{ color: 'white' }}>Timer {`${focusItem}`}</Text>
+        ) : (
+          <Focus addFocusItem={setFocusItem} />
+        )}
       </SafeAreaView>
     </>
   );
@@ -15,5 +32,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: SPACE_CADET,
   },
 });
