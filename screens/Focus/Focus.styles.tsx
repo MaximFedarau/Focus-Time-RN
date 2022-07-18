@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
   },
   inputContainer: {
     flexDirection: 'row',
-    padding: 25,
+    padding: 24,
     alignItems: 'center',
   },
   input: {
