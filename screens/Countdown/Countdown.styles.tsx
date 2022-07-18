@@ -5,13 +5,17 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  inputContainer: {
+  countdown: {
+    flex: 0.5,
+    paddingVertical: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonContainer: {
+    flex: 0.3,
     flexDirection: 'row',
     padding: 16,
+    justifyContent: 'center',
     alignItems: 'center',
-  },
-  input: {
-    flex: 1,
-    marginRight: 16,
   },
 });

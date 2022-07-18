@@ -1,39 +1,29 @@
 //Types
 import React, { ReactElement } from 'react';
+import { ButtonProps, StyleProp, TextStyle, ViewStyle } from 'react-native';
 
 //Constants
-import { WHITE } from '@constants/colors';
+import { styles } from './RoundedButton.styles';
 
 //React Native
 import { TouchableOpacity, Text } from 'react-native';
 
-const RoundedButton = ({
+//Interface for Props
+interface RoundedButtonProps extends ButtonProps {
+  style?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
+  size?: number;
+}
+
+export default function RoundedButton({
   style = {},
   textStyle = {},
   size = 125,
   ...props
-}): ReactElement => {
+}: RoundedButtonProps): ReactElement {
   return (
-    <TouchableOpacity
-      style={[styles(size).radius, style]}
-      onPress={props.onPress}
-    >
+    <TouchableOpacity style={[styles(size).radius, style]} {...props}>
       <Text style={[styles(size).text, textStyle]}>{props.title}</Text>
     </TouchableOpacity>
   );
-};
-
-export default RoundedButton;
-
-const styles = (size: number) => ({
-  radius: {
-    borderRadius: size / 2,
-    width: size,
-    height: size,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderColor: WHITE,
-    borderWidth: 2,
-  },
-  text: { color: WHITE, fontSize: size / 3 },
-});
+}

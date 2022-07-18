@@ -6,12 +6,13 @@ import { SPACE_CADET } from '@constants/colors';
 
 //Screens
 import Focus from '@screens/Focus/Focus.screen';
+import Countdown from '@screens/Countdown/Countdown.screen';
 
 //Expo
 import { StatusBar } from 'expo-status-bar';
 
 //React Native
-import { StyleSheet, SafeAreaView, Text } from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
 
 export default function App(): ReactElement {
   const [focusItem, setFocusItem] = React.useState<string>('');
@@ -20,7 +21,7 @@ export default function App(): ReactElement {
       <StatusBar style="auto" />
       <SafeAreaView style={styles.container}>
         {focusItem.length > 0 ? (
-          <Text style={{ color: 'white' }}>Timer {`${focusItem}`}</Text>
+          <Countdown focusItem={focusItem} />
         ) : (
           <Focus addFocusItem={setFocusItem} />
         )}
