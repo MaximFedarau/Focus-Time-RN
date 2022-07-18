@@ -6,7 +6,12 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   inputContainer: {
-    flex: 0.5,
+    flexDirection: 'row',
     padding: 25,
+    alignItems: 'center',
+  },
+  input: {
+    flex: 1,
+    marginRight: 8,
   },
 });

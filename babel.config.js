@@ -10,6 +10,7 @@ module.exports = function (api) {
           alias: {
             '@constants': './constants',
             '@screens': './screens',
+            '@components': './components',
           },
         },
       ],

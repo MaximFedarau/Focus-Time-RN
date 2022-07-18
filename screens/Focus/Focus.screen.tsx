@@ -4,6 +4,9 @@ import React, { ReactElement } from 'react';
 //Constants
 import { styles } from '@screens/Focus/Focus.styles';
 
+//Components
+import RoundedButton from '@components/RoundedButton/RoundedButton.component';
+
 //React Native
 import { View } from 'react-native';
 
@@ -20,7 +23,9 @@ export default function Focus(): ReactElement {
           onChangeText={setFocusItem}
           value={focusItem}
           label="What would you like to focus on?"
+          style={styles.input}
         />
+        <RoundedButton size={48} title="+" />
       </View>
     </View>
   );
