@@ -5,7 +5,7 @@ import React, { ReactElement } from 'react';
 import { styles } from '@screens/Focus/Focus.styles';
 
 //Components
-import RoundedButton from '@components/RoundedButton/RoundedButton.component';
+import RoundedButton from '@components/Defaults/RoundedButton/RoundedButton.component';
 
 //React Native
 import { View } from 'react-native';
