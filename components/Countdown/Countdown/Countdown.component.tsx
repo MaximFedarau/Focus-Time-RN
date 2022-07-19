@@ -34,17 +34,17 @@ export default function Countdown({
   onEnd,
 }: CountdownProps): ReactElement {
   // * Hooks
-  const interval = React.useRef<NodeJS.Timer | null>(null);
+  const interval = React.useRef<NodeJS.Timer | null>(null); // ! does not cause rerenders
   const [millis, setMillis] = React.useState<number>(0);
 
   function countDown() {
     setMillis((time) => {
-      if (!time) return time; // type checking
-      const timeLeft = time - 1000;
-      if (timeLeft === 0) {
+      if (time === 0) {
         if (interval.current) clearInterval(interval.current);
         onEnd();
+        return time;
       }
+      const timeLeft = time - 1000;
       return timeLeft;
     });
   }
@@ -56,7 +56,6 @@ export default function Countdown({
   }, [minutes]);
 
   React.useEffect(() => {
-    if (!millis) return; // type checking
     onProgress(millis / minutesToMillis(minutes));
   }, [millis]);
 

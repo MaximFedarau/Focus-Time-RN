@@ -7,9 +7,10 @@ import { WHITE } from '@constants/colors';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
   },
   countdown: {
-    flex: 0.5,
+    flex: 0.45,
     paddingVertical: 16,
     alignItems: 'center',
     justifyContent: 'center',
@@ -26,10 +27,19 @@ export const styles = StyleSheet.create({
     color: WHITE,
     textAlign: 'center',
   },
-  buttonContainer: {
+  progressContainer: {
     flex: 0.1,
+    marginTop: 8,
+    paddingHorizontal: 24,
+    justifyContent: 'center',
+  },
+  progress: {
+    height: 8,
+  },
+  buttonContainer: {
+    flex: 0.3,
     flexDirection: 'row',
-    padding: 16,
+    padding: 24,
     justifyContent: 'center',
     alignItems: 'center',
   },

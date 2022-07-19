@@ -10,6 +10,10 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: WHITE,
     padding: 24,
+    borderRadius: 8,
+    borderColor: 'transparent',
+    borderWidth: 1,
+    overflow: 'hidden',
     backgroundColor: LIGHT_CORNFLOWER_BLUE,
   },
 });
