@@ -11,6 +11,7 @@ module.exports = function (api) {
             '@constants': './constants',
             '@screens': './screens',
             '@components': './components',
+            '@utils': './utils',
           },
         },
       ],
