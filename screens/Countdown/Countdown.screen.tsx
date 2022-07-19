@@ -18,19 +18,31 @@ import { ProgressBar } from 'react-native-paper';
 //Interface for Props
 interface CountdownProps {
   focusItem: string;
+  clearFocusItem: () => void;
 }
 
-export default function Countdown({ focusItem }: CountdownProps): ReactElement {
+export default function Countdown({
+  focusItem,
+  clearFocusItem,
+}: CountdownProps): ReactElement {
   const [isPaused, setIsPaused] = React.useState(true);
   const [progress, setProgress] = React.useState(1);
   const [minutes, setMinutes] = React.useState(0.05);
 
   function onPressStartButtonHandler() {
+    if (!progress) {
+      clearFocusItem();
+    }
     setIsPaused(!isPaused);
   }
 
   function onProgressHandler(progress: number) {
-    setProgress(progress);
+    setProgress(() => {
+      if (progress === 0) {
+        setIsPaused(true);
+      }
+      return progress;
+    });
   }
 
   function onEndHandler() {
@@ -61,8 +73,34 @@ export default function Countdown({ focusItem }: CountdownProps): ReactElement {
       </View>
       <View style={styles.buttonContainer}>
         <RoundedButton
-          title={isPaused ? 'Start' : 'Pause'}
+          title="-15"
+          size={96}
+          style={{ marginRight: 16 }}
+          onPress={() => {
+            if (progress * minutes < 0.25) return;
+            setMinutes(progress * minutes - 0.25);
+          }}
+        />
+        <RoundedButton
+          title={!progress ? 'Reset' : isPaused ? 'Start' : 'Pause'}
+          size={96}
           onPress={onPressStartButtonHandler}
+        />
+        <RoundedButton
+          title="+15"
+          size={96}
+          style={{ marginLeft: 16 }}
+          onPress={() => {
+            setMinutes((prevMinutes) => {
+              // ! fix for issue, when minutes is going from 0 seconds to 15 seconds only one time instead of multiple.
+              if (prevMinutes === 0.25) {
+                return (
+                  progress * minutes + 0.25 + Math.random() / 1000 + 0.0001
+                );
+              }
+              return progress * minutes + 0.25;
+            });
+          }}
         />
       </View>
     </View>

@@ -16,12 +16,17 @@ import { StyleSheet, SafeAreaView } from 'react-native';
 
 export default function App(): ReactElement {
   const [focusItem, setFocusItem] = React.useState<string>('');
+
+  function clearFocusItem() {
+    setFocusItem('');
+  }
+
   return (
     <>
       <StatusBar style="auto" />
       <SafeAreaView style={styles.container}>
         {focusItem.length > 0 ? (
-          <Countdown focusItem={focusItem} />
+          <Countdown focusItem={focusItem} clearFocusItem={clearFocusItem} />
         ) : (
           <Focus addFocusItem={setFocusItem} />
         )}

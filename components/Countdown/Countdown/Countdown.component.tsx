@@ -11,6 +11,8 @@ import React, { ReactElement } from 'react';
 
 //Constants
 import { styles } from './Countdown.styles';
+import { minutesToMillis } from '@utils/minutesToMillis';
+import { formatTime } from '@utils/formatTime';
 
 //React Native
 import { Text } from 'react-native';
@@ -22,10 +24,6 @@ interface CountdownProps {
   onProgress: (progress: number) => void;
   onEnd: () => void;
 }
-
-//Utils
-const minutesToMillis = (min: number) => min * 1000 * 60;
-const formatTime = (time: number) => (time < 10 ? `0${time}` : time);
 
 export default function Countdown({
   minutes = 0.1,
@@ -39,12 +37,11 @@ export default function Countdown({
 
   function countDown() {
     setMillis((time) => {
-      if (time === 0) {
+      const timeLeft = time - 1000;
+      if (timeLeft === 0) {
         if (interval.current) clearInterval(interval.current);
         onEnd();
-        return time;
       }
-      const timeLeft = time - 1000;
       return timeLeft;
     });
   }
@@ -52,10 +49,18 @@ export default function Countdown({
   // * Effects
 
   React.useEffect(() => {
+    if (minutesToMillis(minutes) < 1000) {
+      setMillis(0);
+      return;
+    }
     setMillis(minutesToMillis(minutes));
   }, [minutes]);
 
   React.useEffect(() => {
+    if (millis <= 0) {
+      onProgress(0);
+      return;
+    }
     onProgress(millis / minutesToMillis(minutes));
   }, [millis]);
 
