@@ -28,19 +28,19 @@ export default function ControlButtons({
     <View style={styles.buttonContainer}>
       <RoundedButton
         title="-15"
-        size={96}
-        style={{ marginRight: 16 }}
+        size={80}
+        style={styles.leftButtonContainer}
         onPress={onDecreaseTimeHandler}
       />
       <RoundedButton
         title={startButtonTitle}
-        size={96}
+        size={112}
         onPress={onStartButtonHandler}
       />
       <RoundedButton
         title="+15"
-        size={96}
-        style={{ marginLeft: 16 }}
+        size={80}
+        style={styles.rightButtonContainer}
         onPress={onIncreaseTimeHandler}
       />
     </View>

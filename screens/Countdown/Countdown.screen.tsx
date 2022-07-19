@@ -32,7 +32,7 @@ export default function Countdown({
 
   const [isPaused, setIsPaused] = React.useState(true);
   const [progress, setProgress] = React.useState(1);
-  const [minutes, setMinutes] = React.useState(0.05);
+  const [minutes, setMinutes] = React.useState(0.5);
 
   function onProgressHandler(progress: number) {
     setProgress(() => {
@@ -85,7 +85,11 @@ export default function Countdown({
         />
         <View style={styles.textContainer}>
           <Text style={styles.title}>Focusing on</Text>
-          <Text style={styles.task}>{focusItem}</Text>
+          <Text style={styles.task}>
+            {focusItem.length >= 64
+              ? focusItem.substring(0, 64) + '...'
+              : focusItem}
+          </Text>
           <Text style={styles.homeLabel} onPress={clearFocusItem}>
             Go Home
           </Text>
@@ -99,7 +103,7 @@ export default function Countdown({
         />
       </View>
       <ControlButtons
-        startButtonTitle={!progress ? 'Reset' : isPaused ? 'Start' : 'Pause'}
+        startButtonTitle={!progress ? 'Home' : isPaused ? 'Start' : 'Pause'}
         onStartButtonHandler={onStartButtonHandler}
         onDecreaseTimeHandler={onDecreaseTimeHandler}
         onIncreaseTimeHandler={onIncreaseTimeHandler}

@@ -28,6 +28,7 @@ export const styles = StyleSheet.create({
     color: WHITE,
     fontSize: 16,
     textAlign: 'center',
+    marginHorizontal: 8,
   },
   homeLabel: {
     color: WHITE,

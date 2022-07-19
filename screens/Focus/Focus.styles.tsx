@@ -1,9 +1,10 @@
 //React Native
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: Platform.OS === 'android' ? 16 : 0,
   },
   inputContainer: {
     flexDirection: 'row',

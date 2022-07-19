@@ -9,4 +9,10 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  leftButtonContainer: {
+    marginRight: 16,
+  },
+  rightButtonContainer: {
+    marginLeft: 16,
+  },
 });

@@ -6,6 +6,7 @@ import { styles } from '@screens/Focus/Focus.styles';
 
 //Components
 import RoundedButton from '@components/Defaults/RoundedButton/RoundedButton.component';
+import FocusItemsHistory from '@components/Focus/FocusItemsHistory/FocusItemsHistory.component';
 
 //React Native
 import { View } from 'react-native';
@@ -15,10 +16,14 @@ import { TextInput } from 'react-native-paper';
 
 //Interface for Props
 interface FocusProps {
-  addFocusItem: React.Dispatch<React.SetStateAction<string>>;
+  addFocusItem: (focusItem: string) => void;
+  focusItemsHistory: string[];
 }
 
-export default function Focus({ addFocusItem }: FocusProps): ReactElement {
+export default function Focus({
+  addFocusItem,
+  focusItemsHistory,
+}: FocusProps): ReactElement {
   const [focusItem, setFocusItem] = React.useState<string>('');
 
   function onButtonPressHandler() {
@@ -36,6 +41,7 @@ export default function Focus({ addFocusItem }: FocusProps): ReactElement {
         />
         <RoundedButton size={48} title="+" onPress={onButtonPressHandler} />
       </View>
+      <FocusItemsHistory history={focusItemsHistory} />
     </View>
   );
 }
