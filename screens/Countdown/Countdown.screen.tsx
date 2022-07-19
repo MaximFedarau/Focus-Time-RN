@@ -35,8 +35,11 @@ export default function Countdown({ focusItem }: CountdownProps): ReactElement {
           }}
           isPaused={isPaused}
         />
+        <View style={styles.textContainer}>
+          <Text style={styles.title}>Focusing on</Text>
+          <Text style={styles.task}>{focusItem}</Text>
+        </View>
       </View>
-      <Text style={{ color: 'white' }}>{focusItem}</Text>
       <View style={styles.buttonContainer}>
         <RoundedButton
           title={isPaused ? 'Start' : 'Pause'}
