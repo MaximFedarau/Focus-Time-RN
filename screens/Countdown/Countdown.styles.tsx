@@ -20,12 +20,22 @@ export const styles = StyleSheet.create({
   },
   title: {
     color: WHITE,
+    fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
   },
   task: {
     color: WHITE,
+    fontSize: 16,
     textAlign: 'center',
+  },
+  homeLabel: {
+    color: WHITE,
+    fontSize: 14,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: 12,
+    textDecorationLine: 'underline',
   },
   progressContainer: {
     flex: 0.1,
@@ -35,12 +45,5 @@ export const styles = StyleSheet.create({
   },
   progress: {
     height: 8,
-  },
-  buttonContainer: {
-    flex: 0.3,
-    flexDirection: 'row',
-    padding: 24,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });

@@ -7,7 +7,7 @@ import { LIGHT_CORNFLOWER_BLUE } from '@constants/colors';
 
 //Components
 import CountdownElement from '@components/Countdown/Countdown/Countdown.component';
-import RoundedButton from '@components/Defaults/RoundedButton/RoundedButton.component';
+import ControlButtons from '@components/Countdown/ControlButtons/ControlButtons.component';
 
 //React Native
 import { View, Text, Vibration } from 'react-native';
@@ -29,13 +29,6 @@ export default function Countdown({
   const [progress, setProgress] = React.useState(1);
   const [minutes, setMinutes] = React.useState(0.05);
 
-  function onPressStartButtonHandler() {
-    if (!progress) {
-      clearFocusItem();
-    }
-    setIsPaused(!isPaused);
-  }
-
   function onProgressHandler(progress: number) {
     setProgress(() => {
       if (progress === 0) {
@@ -50,6 +43,32 @@ export default function Countdown({
     Vibration.vibrate(PATTERN);
   }
 
+  function onDecreaseTimeHandler() {
+    if (progress * minutes < 0.25) {
+      setMinutes(0);
+      return;
+    }
+    setMinutes(progress * minutes - 0.25);
+  }
+
+  function onStartButtonHandler() {
+    if (!progress) {
+      clearFocusItem();
+    }
+    setIsPaused(!isPaused);
+  }
+
+  function onIncreaseTimeHandler() {
+    setMinutes((prevMinutes) => {
+      // ! fix for issue, when minutes is going from 0 seconds to 15 seconds only one time instead of multiple.
+      if (prevMinutes === 0.25 && progress * minutes === 0) {
+        return progress * minutes + 0.25 + Math.random() / 1000 + 0.0001;
+      } // ! also we can write a method, which clears this 'remainder' in other cases.
+      // ! For example, using fixed number instead of random number.
+      return progress * minutes + 0.25;
+    });
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.countdown}>
@@ -62,6 +81,9 @@ export default function Countdown({
         <View style={styles.textContainer}>
           <Text style={styles.title}>Focusing on</Text>
           <Text style={styles.task}>{focusItem}</Text>
+          <Text style={styles.homeLabel} onPress={clearFocusItem}>
+            Go Home
+          </Text>
         </View>
       </View>
       <View style={styles.progressContainer}>
@@ -71,38 +93,12 @@ export default function Countdown({
           color={LIGHT_CORNFLOWER_BLUE}
         />
       </View>
-      <View style={styles.buttonContainer}>
-        <RoundedButton
-          title="-15"
-          size={96}
-          style={{ marginRight: 16 }}
-          onPress={() => {
-            if (progress * minutes < 0.25) return;
-            setMinutes(progress * minutes - 0.25);
-          }}
-        />
-        <RoundedButton
-          title={!progress ? 'Reset' : isPaused ? 'Start' : 'Pause'}
-          size={96}
-          onPress={onPressStartButtonHandler}
-        />
-        <RoundedButton
-          title="+15"
-          size={96}
-          style={{ marginLeft: 16 }}
-          onPress={() => {
-            setMinutes((prevMinutes) => {
-              // ! fix for issue, when minutes is going from 0 seconds to 15 seconds only one time instead of multiple.
-              if (prevMinutes === 0.25) {
-                return (
-                  progress * minutes + 0.25 + Math.random() / 1000 + 0.0001
-                );
-              }
-              return progress * minutes + 0.25;
-            });
-          }}
-        />
-      </View>
+      <ControlButtons
+        startButtonTitle={!progress ? 'Reset' : isPaused ? 'Start' : 'Pause'}
+        onStartButtonHandler={onStartButtonHandler}
+        onDecreaseTimeHandler={onDecreaseTimeHandler}
+        onIncreaseTimeHandler={onIncreaseTimeHandler}
+      />
     </View>
   );
 }
