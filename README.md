@@ -9,4 +9,4 @@
 - [x] Your phone's memory and speed are under reliable protection.
 - [x] Support both Android and iOS. 
 
-***Contributing is welcome, too.***😁
+***Contributing is welcome, too.***<a>😁</a>
