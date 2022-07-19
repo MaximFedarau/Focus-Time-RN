@@ -16,5 +16,5 @@
 
 - [ ] Rewrite Countdown component on one's own.
 - [ ] Update Focus screen (Main Screen) UI.
-- [ ] 
+- [ ] Update Countdown screen text displaying.
 
