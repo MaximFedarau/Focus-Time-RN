@@ -9,6 +9,9 @@ import { LIGHT_CORNFLOWER_BLUE } from '@constants/colors';
 import CountdownElement from '@components/Countdown/Countdown/Countdown.component';
 import ControlButtons from '@components/Countdown/ControlButtons/ControlButtons.component';
 
+//Expo
+import { useKeepAwake } from 'expo-keep-awake';
+
 //React Native
 import { View, Text, Vibration } from 'react-native';
 
@@ -25,6 +28,8 @@ export default function Countdown({
   focusItem,
   clearFocusItem,
 }: CountdownProps): ReactElement {
+  useKeepAwake();
+
   const [isPaused, setIsPaused] = React.useState(true);
   const [progress, setProgress] = React.useState(1);
   const [minutes, setMinutes] = React.useState(0.05);
