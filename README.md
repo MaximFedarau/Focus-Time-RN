@@ -3,6 +3,7 @@
 </p>
 <br/>
 <h1>Focus your activities professionally with my app.😉</h1>
+</div>
 
 ### It provides many opporunities such as:
 - [x] Convenient and concise UI.
@@ -10,3 +11,10 @@
 - [x] Support both Android and iOS. 
 
 ***Contributing is welcome, too.***<a>😁</a>
+
+### Goals:
+
+- [ ] Rewrite Countdown component on one's own.
+- [ ] Update Focus screen (Main Screen) UI.
+- [ ] 
+
